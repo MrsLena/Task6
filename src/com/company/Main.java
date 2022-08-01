@@ -12,28 +12,32 @@ public class Main {
         Map<String, Set<String>> map = new HashMap<>();
         map.put("a", addelement("a"));
         map.put("b", addelement("b"));
+        map.put("с", addelement("с"));
 
+        //сreate list all elements
+        Set<String> listelements = new TreeSet<>();
+
+        for (Map.Entry e: map.entrySet()) {
+           Set<String> rez = (Set<String>) e.getValue();
+           listelements.addAll(rez);
+        }
 
 
         for (Map.Entry e: map.entrySet()) {
             String FirstSymbol = String.valueOf(e.getKey());
-            System.out.println(FirstSymbol);
+            List<String> newSp = new ArrayList<>();
 
-            Set<String> rez = (Set<String>) e.getValue();
-            Iterator<String> rezIterator = rez.iterator();
-            while (rezIterator.hasNext()) {
-                String tek = rezIterator.next();
-                if (tek.charAt(0)!=FirstSymbol.charAt(0)) {
-                    rezIterator.remove();
+            for (String d:   listelements    ) {
+                if (d.charAt(0)==FirstSymbol.charAt(0)) {
+                    newSp.add(d);
                 }
-
             }
-            e.setValue(rez);
+
+            e.setValue(newSp);
+
+            System.out.println("для ключа " + e.getKey() + " элементы: " + e.getValue());
         }
 
-        for (Map.Entry e: map.entrySet()) {
-            System.out.println(e.getKey() + " " + e.getValue());
-        }
     }
 
 
@@ -42,8 +46,10 @@ public class Main {
         Set<String> rez = new HashSet<>();
         rez.add(aa+"111111");
         rez.add(aa+"22222");
-        rez.add("z99999");
-        rez.add("a88888");
+        rez.add("b9999");
+        rez.add("с5555");
+        rez.add("b0000");
+        rez.add("a8888");
         return rez;
     }
 }
